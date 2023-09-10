@@ -56,13 +56,14 @@
 .home .search{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 40px;
+  width: 100%;
   gap: .7rem;
 }
 .home .search input{
   height: 100%;
-  width: 270px;
+  width: 90%;
   border: 1px solid rgba(0, 0, 0, 0.418);
   border-radius: 7px;
   padding: 3px 1rem;
@@ -72,8 +73,15 @@
   background-color: rgb(9, 113, 173);
   color: rgba(241, 232, 232, 0.966);
   height: 100%;
-  width: 40px;
+  min-width: 40px;
   padding: 7px;
   border-radius: 5px;
   cursor: pointer;
+}
+.topPost .post{
+  cursor: pointer;
+}
+.topPost .post .image{
+  height: 250px;
+  border-radius: 15px;
 }
