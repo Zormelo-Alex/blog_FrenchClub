@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import {AiOutlineSearch} from "react-icons/ai"
+import Footer from '../components/Footer';
 
 const Home = () => {
 
@@ -36,7 +37,7 @@ const Home = () => {
         username: "Laurene Adjei",
       },
     ];
-    
+
   return (
     <>
         <Navbar/>
@@ -62,7 +63,7 @@ const Home = () => {
                 </div>
             </div>
             <hr className='mt-8' />
-            <div className="morePosts mt-8">
+            <div className="morePosts mt-8 mb-8">
                 <div className="top flex justify-between items-center">
                     <h2 className='text-2xl font-semibold'>More Posts</h2>
                     <p className='text-gray-500 capitalize'>see all</p>
@@ -86,6 +87,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
     </>
   )
 }
