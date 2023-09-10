@@ -15,9 +15,9 @@ const Navbar = () => {
             </button>
             <div className={navOpen? "open": "closed"}>
                 <ul className='center-items'>
-                    <li className='text-2xl text-slate-200 font-semibold mb-4'><a href="">Login</a></li>
-                    <li className='text-2xl text-slate-200 font-semibold mb-4'><a href="">SignUp</a></li>
-                    <li className='text-2xl text-slate-200 font-semibold'><a href="">Create Post</a></li>
+                    <li className='text-lg text-slate-200 font-semibold mb-4'><a href="">Login</a></li>
+                    <li className='text-lg text-slate-200 font-semibold mb-4'><a href="">SignUp</a></li>
+                    <li className='text-lg text-slate-200 font-semibold'><a href="">Create Post</a></li>
                 </ul>
             </div>
             <div className='text-2xl text-slate-700'>Bonjour!</div>
@@ -26,9 +26,9 @@ const Navbar = () => {
             </button>
             <div className={profileOpen ? "open profilePicMove": "closed"}>
                 <ul className='center-items items-end'>
-                    <li className='text-lg text-slate-200 font-semibold mb-4'>Alexander Dodzi Zormelo</li>
-                    <li className='text-lg text-slate-200 font-semibold mb-8'>alexzormelo9@gmail.com</li>
-                    <li className='text-lg text-slate-200 font-semibold'>Logout</li>
+                    <li className='text-[15px] text-slate-200 font-semibold mb-4'>Alexander Dodzi Zormelo</li>
+                    <li className='text-[15px] text-slate-200 font-semibold mb-8'>alexzormelo9@gmail.com</li>
+                    <li className='text-[15px] text-slate-200 font-semibold'>Logout</li>
                 </ul>
             </div>
         </div>
