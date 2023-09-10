@@ -53,3 +53,27 @@
   flex-direction: column;
   justify-content: center;
 }
+.home .search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  gap: .7rem;
+}
+.home .search input{
+  height: 100%;
+  width: 270px;
+  border: 1px solid rgba(0, 0, 0, 0.418);
+  border-radius: 7px;
+  padding: 3px 1rem;
+  outline: none;
+}
+.home .search svg{
+  background-color: rgb(9, 113, 173);
+  color: rgba(241, 232, 232, 0.966);
+  height: 100%;
+  width: 40px;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
