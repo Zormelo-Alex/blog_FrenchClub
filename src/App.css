@@ -85,3 +85,15 @@
   height: 250px;
   border-radius: 15px;
 }
+.morePosts .posts .post .image{
+  height: 70px;
+  min-width: 100px;
+  max-width: 100px;
+  border-radius: 15px;
+}
+.morePosts .posts .post .postdetails .title{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 60vw;
+}
