@@ -20,7 +20,7 @@ const Home = () => {
                     <div className="title mt-2">
                         <h5 className='font-semibold text-lg'>Unlocking the Secrets of Creative Inspiration: A Journey into the Artistic Mind</h5>
                     </div>
-                    <div className="userinfo flex gap-6 mt-2">
+                    <div className="userinfo flex gap-3 mt-2">
                         <div className="date">October 4, 2023</div>
                         <div className="date">-</div>
                         <div className="username">Zormelo Alex</div>
