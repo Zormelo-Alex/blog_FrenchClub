@@ -1,11 +1,11 @@
 import './App.css'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import NotFound from './pages/NotFound';
 import EditProfile from './pages/EditProfile';
 import Posts from './pages/Posts';
@@ -27,11 +27,11 @@ const router = createBrowserRouter([
     element: <Create/>,
   },
   {
-    path: "/post",
+    path: "/post/:id",
     element: <Post/>,
   },
   {
-    path: "/posts",
+    path: "/all-posts",
     element: <Posts/>,
   },
   {

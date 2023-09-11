@@ -81,7 +81,7 @@
 .topPost .post{
   cursor: pointer;
 }
-.topPost .post .image{
+.topPost .post .image, .post .main .image{
   height: 250px;
   border-radius: 15px;
 }
@@ -96,4 +96,49 @@
   white-space: nowrap;
   overflow: hidden;
   width: 60vw;
+}
+.post .main .comments .cmts{
+  width: 100%;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.post .main .comments .cmts .cmt .image{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.post .main .comments input{
+  height: 100%;
+  width: 90%;
+  border: 1px solid rgba(0, 0, 0, 0.418);
+  border-radius: 7px;
+  padding: 3px 1rem;
+  outline: none;
+}
+.post .main .comments button{
+  background-color: rgb(9, 113, 173);
+  color: rgba(241, 232, 232, 0.966);
+  height: 100%;
+  min-width: 40px;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.post .main .comments .options{
+  position: absolute;
+  right: 0;
+  top: 2rem;
+}
+.post .main .comments .options button{
+  background-color: red;
+  color: rgba(241, 232, 232, 0.966);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  width: 40px;
+  padding: 3px;
+  font-size: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

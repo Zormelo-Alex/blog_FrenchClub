@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import {AiOutlineSearch} from "react-icons/ai"
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -48,41 +49,47 @@ const Home = () => {
             </div>
             <div className="topPost mt-8">
                 <h2 className='text-2xl font-semibold'>Recent Post</h2>
-                <div className="post mt-4">
-                    <div className="image">
-                        <img src="https://wallpaperaccess.com/full/9070067.png" alt="post image" />
+                <Link to={"/post/2"}>
+                    <div className="post mt-4">
+                        <div className="image">
+                            <img src="https://wallpaperaccess.com/full/9070067.png" alt="post image" />
+                        </div>
+                        <div className="title mt-2">
+                            <h5 className='font-semibold text-lg'>Unlocking the Secrets of Creative Inspiration: A Journey into the Artistic Mind</h5>
+                        </div>
+                        <div className="userinfo flex gap-3 mt-2 text-gray-500">
+                            <div className="date">October 4, 2023</div>
+                            <div className="date">-</div>
+                            <div className="username">Zormelo Alex Dodzi</div>
+                        </div>
                     </div>
-                    <div className="title mt-2">
-                        <h5 className='font-semibold text-lg'>Unlocking the Secrets of Creative Inspiration: A Journey into the Artistic Mind</h5>
-                    </div>
-                    <div className="userinfo flex gap-3 mt-2 text-gray-500">
-                        <div className="date">October 4, 2023</div>
-                        <div className="date">-</div>
-                        <div className="username">Zormelo Alex Dodzi</div>
-                    </div>
-                </div>
+                </Link>
             </div>
             <hr className='mt-8' />
             <div className="morePosts mt-8 mb-8">
                 <div className="top flex justify-between items-center">
                     <h2 className='text-2xl font-semibold'>More Posts</h2>
-                    <p className='text-gray-500 capitalize'>see all</p>
+                    <Link to={"/all-posts"}>
+                        <p className='text-gray-500 capitalize'>see all</p>
+                    </Link>
                 </div>
                 <div className="posts mt-4">
                     {posts.map((post, index)=>(
-                        <div className="post flex gap-5 items-center mb-4">
-                            <div className="image">
-                                <img src={post.imgUrl} alt="post image" />
-                            </div>
-                            <div className="postdetails">
-                                <div className="title font-semibold text-lg">{post.title}</div>
-                                <div className="userinfo flex gap-3 text-[10px] text-gray-500">
-                                    <div className="date">{post.createDate}</div>
-                                    <div className="date">-</div>
-                                    <div className="username">{post.username}</div>
+                        <Link to={`/post/${index}`}>
+                            <div className="post flex gap-5 items-center mb-4">
+                                <div className="image">
+                                    <img src={post.imgUrl} alt="post image" />
+                                </div>
+                                <div className="postdetails">
+                                    <div className="title font-semibold text-lg">{post.title}</div>
+                                    <div className="userinfo flex gap-3 text-[10px] text-gray-500">
+                                        <div className="date">{post.createDate}</div>
+                                        <div className="date">-</div>
+                                        <div className="username">{post.username}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

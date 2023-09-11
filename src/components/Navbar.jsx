@@ -21,7 +21,9 @@ const Navbar = () => {
                     <li className='text-lg text-slate-200 font-semibold'><Link to={"/create"}>Create Post</Link></li>
                 </ul>
             </div>
-            <div className='text-2xl text-slate-700'>Bonjour!</div>
+            <Link to={"/"}>
+                <div className='text-2xl text-slate-700'>Bonjour!</div>
+            </Link>
             <button disabled={navOpen} className="profilePic" onClick={()=>setprofileOpen(!profileOpen)}>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHx-26qVB4sL3d0S0bA31ronzegMlaIQ_yltFJz9T84teKbKVU9AEIyuRRE6qnyZlBArg&usqp=CAU" alt="img" />
             </button>
