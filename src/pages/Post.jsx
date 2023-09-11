@@ -79,7 +79,7 @@ const Post = () => {
                         </div>
                         <div className="commentdetails w-full">
                             <div className="name text-lg capitalize flex justify-between items-center relative">
-                              <div>
+                              <div className='text-[14px]'>
                                 {comment.username}
                               </div>
                               <div className='cursor-pointer' onClick={()=>setshowOptions(!showOptions)}>...</div>
