@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Register = () => {
+const Posts = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center">
       <h1 className="text-4xl font-semibold">Welcome to Our Website!</h1>
@@ -12,4 +12,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Posts

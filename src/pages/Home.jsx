@@ -76,7 +76,7 @@ const Home = () => {
                             </div>
                             <div className="postdetails">
                                 <div className="title font-semibold text-lg">{post.title}</div>
-                                <div className="userinfo flex gap-3 text-sm text-gray-500">
+                                <div className="userinfo flex gap-3 text-[10px] text-gray-500">
                                     <div className="date">{post.createDate}</div>
                                     <div className="date">-</div>
                                     <div className="username">{post.username}</div>

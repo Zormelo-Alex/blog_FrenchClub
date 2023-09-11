@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -15,9 +16,9 @@ const Navbar = () => {
             </button>
             <div className={navOpen? "open": "closed"}>
                 <ul className='center-items'>
-                    <li className='text-lg text-slate-200 font-semibold mb-4'><a href="">Login</a></li>
-                    <li className='text-lg text-slate-200 font-semibold mb-4'><a href="">SignUp</a></li>
-                    <li className='text-lg text-slate-200 font-semibold'><a href="">Create Post</a></li>
+                    <li className='text-lg text-slate-200 font-semibold mb-4'><Link to={"/login"}>Login</Link></li>
+                    <li className='text-lg text-slate-200 font-semibold mb-4'><Link to={"/register"}>SignUp</Link></li>
+                    <li className='text-lg text-slate-200 font-semibold'><Link to={"/create"}>Create Post</Link></li>
                 </ul>
             </div>
             <div className='text-2xl text-slate-700'>Bonjour!</div>
