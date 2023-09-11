@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from '../components/Navbar'
 import {AiOutlineSearch} from "react-icons/ai"
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/authContext';
 
 const Home = () => {
+
+    const {currentUser} = useContext(AuthContext)
+    // console.log(currentUser)
 
     const posts = [
       {
