@@ -1,23 +1,6 @@
-import React, { useContext, useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/authContext';
+import React from 'react'
 
-const Create = () => {
-
-  const {currentUser} = useContext(AuthContext)
-  const navigate = useNavigate()
-
-  const [file, setFile] = useState(null);
-  const [uploadedImg, setUploadedImg] = useState(null);
-  
-
-  const handleImage = (e) => {
-    setFile(e.target.files[0])
-    setUploadedImg(e.target.files[0])
-  }
-
+const EditPost = () => {
   return (
     <>
     <Navbar/>
@@ -43,7 +26,7 @@ const Create = () => {
             <textarea name="" id="" cols="30" rows="10" className='resize-none border rounded-md px-3 py-2 w-full focus:outline-none' placeholder='Enter post content...'></textarea>
           </div>
           <div className="btn center-items items-center mt-10 rounded-md">
-            <button className='bg-blue-500 p-2 rounded-md pl-8 pr-8 text-slate-100'>Create</button>
+            <button className='bg-slate-500 p-2 rounded-md pl-8 pr-8 text-slate-300'>Create!</button>
           </div>
         </form>
       </div>
@@ -53,4 +36,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default EditPost

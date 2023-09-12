@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <>
         <Navbar/>
-        <div className='home pt-8 pl-4 pr-4'>
+        <div className='home min-h-screen pt-8 pl-4 pr-4'>
             <div className="search">
                 <input type="search" placeholder='Search for a topic...' />
                 <AiOutlineSearch/>

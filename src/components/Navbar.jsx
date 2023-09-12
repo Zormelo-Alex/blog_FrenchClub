@@ -19,7 +19,9 @@ const Navbar = () => {
             setUsername(currentUser.user.username)
             setEmail(currentUser.user.email)
         }else{
-            toast("Join the family! log in or register today!!!")
+            toast("Join the family! log in or register today!!!", {
+                position: "bottom-center",
+            })
         }
     }
 
