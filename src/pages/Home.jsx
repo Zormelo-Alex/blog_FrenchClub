@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import {AiOutlineSearch} from "react-icons/ai"
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
+import axios from 'axios';
 
 const Home = () => {
 
+    const Url = import.meta.env.VITE_ROUTE
     const {currentUser} = useContext(AuthContext)
     // console.log(currentUser)
 
@@ -43,8 +45,22 @@ const Home = () => {
       },
     ];
 
-    
+    const setUp = async() => {
+        try {
+            const res = await axios.get(`${Url}/posts`, {
+                headers: {
+                  Authorization: `Bearer ${currentUser.token}`
+                }
+              })
+              console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
+    useEffect(()=>{
+        setUp()
+    }, [])
   return (
     <>
         <Navbar/>
