@@ -1,15 +1,19 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import {AiOutlineSearch} from "react-icons/ai"
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import axios from 'axios';
+import moment from "moment"
+import Loading from '../components/Loading';
 
 const Home = () => {
 
     const Url = import.meta.env.VITE_ROUTE
     const {currentUser} = useContext(AuthContext)
+
+    const [allPosts, setAllPosts] = useState(null);
     // console.log(currentUser)
 
     const posts = [
@@ -52,12 +56,13 @@ const Home = () => {
                   Authorization: `Bearer ${currentUser.token}`
                 }
               })
-              console.log(res)
+              setAllPosts(res.data)
         } catch (error) {
             console.log(error)
         }
     }
 
+    console.log(allPosts)
     useEffect(()=>{
         setUp()
     }, [])
@@ -96,23 +101,25 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className="posts mt-4">
-                    {posts.map((post, index)=>(
-                        <Link to={`/post/${index}`}>
+                    {allPosts ? allPosts.map((post, index)=>(
+                        <Link key={index} to={`/post/${post.ID}`}>
                             <div className="post flex gap-5 items-center mb-4">
                                 <div className="image">
-                                    <img src={post.imgUrl} alt="post image" />
+                                    <img src={`${Url}/uploads/${post.pictureURL}`} alt="post image" />
                                 </div>
                                 <div className="postdetails">
                                     <div className="title font-semibold text-lg">{post.title}</div>
                                     <div className="userinfo flex gap-3 text-[10px] text-gray-500">
-                                        <div className="date">{post.createDate}</div>
+                                        <div className="date">{moment(post.createDate).format("MMM Do YY")}</div>
                                         <div className="date">-</div>
                                         <div className="username">{post.username}</div>
                                     </div>
                                 </div>
                             </div>
-                        </Link>
-                    ))}
+                        </Link> 
+                    )):
+                    <Loading/>
+                }
                 </div>
             </div>
         </div>
