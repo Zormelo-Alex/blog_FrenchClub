@@ -30,6 +30,8 @@ const Create = () => {
 
     const formData = new FormData();
 
+    if(title.trim() == "" || content.trim() == "") return toast.error("All text fields are required!")
+
     formData.append('image',file) 
     formData.append('title',title) 
     formData.append('content',content) 
