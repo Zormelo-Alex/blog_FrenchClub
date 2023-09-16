@@ -124,7 +124,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.post .main .comments .options{
+.post .main .comments .cont{
   position: absolute;
   right: 0;
   top: 2rem;

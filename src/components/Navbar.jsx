@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Navbar = () => {
 
     const {currentUser, logout} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const [navOpen, setnavOpen] = useState(false);
     const [profileOpen, setprofileOpen] = useState(false);
@@ -29,6 +30,9 @@ const Navbar = () => {
         logout()
         toast("See you soon!")
         setprofileOpen(false)
+        setTimeout(() => {
+            navigate("/login")
+        }, 3000);
     }
 
     useEffect(()=>{

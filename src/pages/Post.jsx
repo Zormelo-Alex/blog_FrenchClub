@@ -16,17 +16,14 @@ const Post = () => {
   
   const [post, setPost] = useState(null);
   const [showOptions, setshowOptions] = useState(false);
-  const [comment, setComment] = useState(null);
+  const [comment, setComment] = useState("");
   const [comments, setComments] = useState(null);
+  const [refresh, setRefresh] = useState(true);
 
 
   const setUp = async () => {
     try {
-      const res = await axios.get(`${Url}/posts/${id}`, {
-        headers: {
-          Authorization: `Bearer ${currentUser.token}`
-        }
-      })
+      const res = await axios.get(`${Url}/posts/${id}`)
       setPost(res.data.post)
       setComments(res.data.postcomments)
     } catch (error) {
@@ -34,10 +31,39 @@ const Post = () => {
     }
   }
 
-  console.log(comments)
+  const handleShowoptions = (e) => {
+    if(showOptions){
+      e.target.parentElement.querySelector(".options").classList.add("hidden")
+    }else{
+      e.target.parentElement.querySelector(".options").classList.remove("hidden")
+    }
+    setshowOptions(!showOptions)
+  }
+
+  const deleteComment = async(e) => {
+    e.preventDefault()
+    const id = e.target.id
+    // console.log(e.target, id)
+    try {
+      const res = await axios.post(`${Url}/comments/delete/${id}`, {},{
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      })
+      // console.log(res)
+      toast.success("Comment deleted")
+      setRefresh(!refresh)
+    } catch (error) {
+      console.log(error)
+      toast.error("Sorry, something went wrong")
+    }
+  }
+
+  // console.log(comments)
 
   const addComment = async(e) => {
     e.preventDefault()
+    if(!currentUser) return toast.error("Access denied!")
     if(comment.trim() == "") return toast.error("Can't submit an empty comment")
 
     try {
@@ -46,8 +72,9 @@ const Post = () => {
           Authorization: `Bearer ${currentUser.token}`
         }
       })
-      console.log(res)
+      toast.success("You added a comment!")
       setComment("")
+      setRefresh(!refresh)
     } catch (error) {
       console.log(error)
       toast.error("sorry something went wrong")
@@ -58,7 +85,7 @@ const Post = () => {
 
   useEffect(()=>{
     setUp()
-  }, [comment])
+  }, [refresh])
 
   return (
     <>
@@ -83,20 +110,27 @@ const Post = () => {
                     <hr className='mt-4'/>
                     <div className="cmts mt-4">
                       {comments?.length > 0 ? comments.map((comment, index)=>(
-                        <div className="cmt flex gap-5 mb-4">
+                        <div key={index} className="cmt flex gap-5 mb-4">
                           <div className="image">
-                              <img src={comment.userImg} alt="post image" />
+                              <img src={`${Url}/uploads/${comment.profilePicture}`} alt="post image" />
                           </div>
                           <div className="commentdetails w-full">
                               <div className="name text-lg capitalize flex justify-between items-center relative">
                                 <div className='text-[14px]'>
                                   {comment.username}
                                 </div>
-                                <div className='cursor-pointer' onClick={()=>setshowOptions(!showOptions)}>...</div>
-                                <div className={showOptions? "block options" : "hidden"}>
-                                  <button>Delete</button>
-                                </div>
-                                </div>
+                                {
+                                  currentUser?.user.ID == comment?.uid &&
+                                  <>
+                                    <div className='cursor-pointer' onClick={handleShowoptions}>...</div>
+                                    <div className='cont'>
+                                      <div className={"options hidden"}>
+                                        <button onClick={deleteComment} id={comment.ID}>Delete</button>
+                                      </div>
+                                    </div>
+                                  </>
+                                }
+                              </div>
                               <div className="coment text-[10px] text-gray-500">
                                   <div className="content">{comment.comment}</div>
                               </div>
@@ -107,7 +141,7 @@ const Post = () => {
                       }
                     </div>
                     <div className="addcomment mt-8 flex items-center justify-between h-[40px] gap-[.7rem]">
-                      <input type="text" onChange={(e)=>setComment(e.target.value)} value={comment} placeholder='Add a comment...'/>
+                      <input type="text" onClick={(e)=>!currentUser && toast("You have to log in to comment")} onChange={(e)=>setComment(e.target.value)} value={comment} placeholder='Add a comment...'/>
                       <button onClick={addComment}>Post</button>
                     </div>
                 </div>

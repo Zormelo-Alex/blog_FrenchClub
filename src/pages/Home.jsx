@@ -14,55 +14,21 @@ const Home = () => {
     const {currentUser} = useContext(AuthContext)
 
     const [allPosts, setAllPosts] = useState(null);
+    const [recentPosts, setRecentPosts] = useState(null);
     // console.log(currentUser)
-
-    const posts = [
-      {
-        imgUrl: "https://wallpaperaccess.com/full/9070071.png",
-        title: "Navigating the Digital Age: Empowering Your Online Presence",
-        createDate: "October 4, 2023",
-        username: "Zormelo Alex Dodzi",
-      },
-      {
-        imgUrl: "https://wallpaperaccess.com/full/9070119.png",
-        title: "The Science of Happiness: Discovering Joy in Everyday Life",
-        createDate: "October 4, 2023",
-        username: "Ashafa Ahmed",
-      },
-      {
-        imgUrl: "https://wallpaperaccess.com/full/8504301.png",
-        title: "Sustainable Living: Redefining Your Eco-Friendly Lifestyle",
-        createDate: "October 4, 2023",
-        username: "Morrison Jessica",
-      },
-      {
-        imgUrl: "https://wallpaperaccess.com/full/9070106.jpg",
-        title: "Beyond Boundaries: Exploring the Beauty of World Travel",
-        createDate: "October 4, 2023",
-        username: "Normanyo-Grives Etornam",
-      },
-      {
-        imgUrl: "https://wallpaperaccess.com/full/9070100.jpg",
-        title: "From Dreams to Reality: Achieving Your Goals with Determination",
-        createDate: "October 4, 2023",
-        username: "Laurene Adjei",
-      },
-    ];
 
     const setUp = async() => {
         try {
-            const res = await axios.get(`${Url}/posts`, {
-                headers: {
-                  Authorization: `Bearer ${currentUser.token}`
-                }
-              })
+            const res = await axios.get(`${Url}/posts`)
+            const recent = await axios.get(`${Url}/posts/recents`)
               setAllPosts(res.data)
+              setRecentPosts(recent.data)
         } catch (error) {
             console.log(error)
         }
     }
 
-    console.log(allPosts)
+    // console.log(allPosts)
     useEffect(()=>{
         setUp()
     }, [])
@@ -75,22 +41,27 @@ const Home = () => {
                 <AiOutlineSearch/>
             </div>
             <div className="topPost mt-8">
-                <h2 className='text-2xl font-semibold'>Recent Post</h2>
-                <Link to={"/post/2"}>
-                    <div className="post mt-4">
-                        <div className="image">
-                            <img src="https://wallpaperaccess.com/full/9070067.png" alt="post image" />
-                        </div>
-                        <div className="title mt-2">
-                            <h5 className='font-semibold text-lg'>Unlocking the Secrets of Creative Inspiration: A Journey into the Artistic Mind</h5>
-                        </div>
-                        <div className="userinfo flex gap-3 mt-2 text-gray-500">
-                            <div className="date">October 4, 2023</div>
-                            <div className="date">-</div>
-                            <div className="username">Zormelo Alex Dodzi</div>
-                        </div>
-                    </div>
-                </Link>
+                <h2 className='text-2xl font-semibold'>Most Recent Post</h2>
+                {
+                    recentPosts?.length ? recentPosts.map((post, index)=>(
+                        <Link key={index} to={`/post/${post.ID}`}>
+                            <div className="post mt-4">
+                                <div className="image">
+                                    <img src={`${Url}/uploads/${post.pictureURL}`} alt="post image" />
+                                </div>
+                                <div className="title mt-2">
+                                    <h5 className='font-semibold text-lg'>{post.title}</h5>
+                                </div>
+                                <div className="userinfo flex gap-3 mt-2 text-gray-500">
+                                    <div className="date">{moment(post.createDate).format("MMMM Do, YY")}</div>
+                                    <div className="date">-</div>
+                                    <div className="username">{post.username}</div>
+                                </div>
+                            </div>
+                        </Link>
+                    )):
+                    <Loading/>
+                }
             </div>
             <hr className='mt-8' />
             <div className="morePosts mt-8 mb-8">
@@ -101,24 +72,24 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className="posts mt-4">
-                    {allPosts ? allPosts.map((post, index)=>(
+                    {allPosts?.length > 0 ? allPosts.map((post, index)=>(
                         <Link key={index} to={`/post/${post.ID}`}>
                             <div className="post flex gap-5 items-center mb-4">
                                 <div className="image">
                                     <img src={`${Url}/uploads/${post.pictureURL}`} alt="post image" />
                                 </div>
                                 <div className="postdetails">
-                                    <div className="title font-semibold text-lg">{post.title}</div>
+                                    <div className="title font-semibold text-lg capitalize">{post.title}</div>
                                     <div className="userinfo flex gap-3 text-[10px] text-gray-500">
                                         <div className="date">{moment(post.createDate).format("MMM Do YY")}</div>
                                         <div className="date">-</div>
-                                        <div className="username">{post.username}</div>
+                                        <div className="username capitalize">{post.username}</div>
                                     </div>
                                 </div>
                             </div>
                         </Link> 
                     )):
-                    <Loading/>
+                    <Link to={"/create"}>Create a new post</Link>
                 }
                 </div>
             </div>

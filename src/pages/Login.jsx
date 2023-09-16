@@ -22,7 +22,7 @@ const Login = () => {
         navigate("/")
       }, 2000);
     }else{
-      toast.error("something went wrong... try again")
+      toast.error("Incorrect Email or Password!")
     }
   }
 
