@@ -63,7 +63,7 @@ const Post = () => {
 
   const addComment = async(e) => {
     e.preventDefault()
-    if(!currentUser) return toast.error("Access denied!")
+    if(!currentUser) return toast.error("Log in first!")
     if(comment.trim() == "") return toast.error("Can't submit an empty comment")
 
     try {

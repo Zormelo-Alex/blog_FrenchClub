@@ -11,6 +11,7 @@ import EditProfile from './pages/EditProfile';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Create from './pages/Create';
+import UpdateProfile from './pages/UpdateProfile';
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>,
+  },
+  {
+    path: "/update-profile",
+    element: <UpdateProfile/>,
   },
   {
     path: "*",

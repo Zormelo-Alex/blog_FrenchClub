@@ -66,7 +66,8 @@ const Navbar = () => {
                     currentUser &&
                 <ul className='center-items items-end'>
                     <li className='text-[15px] text-slate-200 font-semibold mb-4'>{username}</li>
-                    <li className='text-[15px] text-slate-200 font-semibold mb-8'>{email}</li>
+                    <li className='text-[15px] text-slate-200 font-semibold mb-4'>{email}</li>
+                    <li className='text-[15px] text-slate-200 font-semibold mb-6'><Link to={"/update-profile"}>Manage Account</Link></li>
                     <li onClick={handleLogout} className='text-[15px] text-slate-200 font-semibold cursor-pointer'>Logout</li>
                 </ul>
                 }
