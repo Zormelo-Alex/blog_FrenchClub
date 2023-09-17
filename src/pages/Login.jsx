@@ -16,6 +16,7 @@ const Login = () => {
   const handleLogin = async(e) => {
     e.preventDefault()
     const res = await login({email, password})
+    console.log(res)
     if(res.signin){
       toast.success("signed in successfully")
       setTimeout(() => {

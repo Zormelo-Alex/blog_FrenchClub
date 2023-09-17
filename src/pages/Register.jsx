@@ -18,7 +18,7 @@ const Register = () => {
 const handleClick = async(e) => {
   e.preventDefault()
   const res = await register({username, email, password})
-  // console.log(res)
+  console.log(res)
   if(res.signup){
     navigate("/")
   }else{
