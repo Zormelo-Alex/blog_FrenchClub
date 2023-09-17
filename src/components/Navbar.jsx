@@ -4,21 +4,30 @@ import { AuthContext } from '../context/authContext';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Navbar = () => {
 
     const {currentUser, logout} = useContext(AuthContext)
     const navigate = useNavigate()
+    const Url = import.meta.env.VITE_ROUTE
 
     const [navOpen, setnavOpen] = useState(false);
     const [profileOpen, setprofileOpen] = useState(false);
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
+    // console.log(currentUser)
 
-    const setUp = () => {
+    const setUp = async() => {
         if(currentUser){
             setUsername(currentUser.user.username)
             setEmail(currentUser.user.email)
+            const res = await axios.get(`${Url}/users/${currentUser.user.ID}`, {
+                headers: {
+                  Authorization: `Bearer ${currentUser.token}`
+                }
+              })
+              currentUser.user.pictureURL =  res.data.pictureURL
         }else{
             toast("Join the family! log in or register today!!!", {
                 position: "bottom-center",
@@ -58,8 +67,8 @@ const Navbar = () => {
             <Link to={"/"}>
                 <div className='text-2xl text-slate-700'>Bonjour!</div>
             </Link>
-            <button disabled={navOpen || !currentUser} className="profilePic" onClick={()=>setprofileOpen(!profileOpen)}>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHx-26qVB4sL3d0S0bA31ronzegMlaIQ_yltFJz9T84teKbKVU9AEIyuRRE6qnyZlBArg&usqp=CAU" alt="img" />
+            <button  disabled={navOpen || !currentUser} className="profilePic" onClick={()=>setprofileOpen(!profileOpen)}>
+                <img className='rounded-full h-[45px] w-[45px] shadow-lg' src={currentUser?.user.pictureURL? `${Url}/uploads/${currentUser?.user.pictureURL}` :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHx-26qVB4sL3d0S0bA31ronzegMlaIQ_yltFJz9T84teKbKVU9AEIyuRRE6qnyZlBArg&usqp=CAU"} alt="img" />
             </button>
             <div className={currentUser && profileOpen ? "open profilePicMove": "closed"}>
                 {

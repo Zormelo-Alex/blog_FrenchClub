@@ -112,7 +112,7 @@ const Post = () => {
                       {comments?.length > 0 ? comments.map((comment, index)=>(
                         <div key={index} className="cmt flex gap-5 mb-4">
                           <div className="image">
-                              <img src={`${Url}/uploads/${comment.profilePicture}`} alt="post image" />
+                              <img src={comment.profilePicture? `${Url}/uploads/${comment.profilePicture}` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHx-26qVB4sL3d0S0bA31ronzegMlaIQ_yltFJz9T84teKbKVU9AEIyuRRE6qnyZlBArg&usqp=CAU"} alt="post image" />
                           </div>
                           <div className="commentdetails w-full">
                               <div className="name text-lg capitalize flex justify-between items-center relative">
