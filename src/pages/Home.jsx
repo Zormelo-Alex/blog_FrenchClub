@@ -13,8 +13,8 @@ const Home = () => {
     const Url = import.meta.env.VITE_ROUTE
     const {currentUser} = useContext(AuthContext)
 
-    const [allPosts, setAllPosts] = useState(null);
-    const [recentPosts, setRecentPosts] = useState(null);
+    const [allPosts, setAllPosts] = useState([]);
+    const [recentPosts, setRecentPosts] = useState([]);
     // console.log(currentUser)
 
     const setUp = async() => {
@@ -22,13 +22,13 @@ const Home = () => {
             const res = await axios.get(`${Url}/posts`)
             const recent = await axios.get(`${Url}/posts/recents`)
               setAllPosts(res.data)
-              setRecentPosts(recent.data)
+              res.data == "No match found!!!" ? setAllPosts(null) :  setAllPosts(res.data)
+              recent.data == "No match found!!!" ? setRecentPosts(null) :  setRecentPosts(recent.data)
         } catch (error) {
             console.log(error)
         }
     }
 
-    // console.log(allPosts)
     useEffect(()=>{
         setUp()
     }, [])
